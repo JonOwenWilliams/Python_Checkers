@@ -61,17 +61,30 @@ def players_move():
 def check_move(board, old_row, old_col, new_row, new_col, player):
     """
     Checks if the number the player entered is valid.
-    checks if stace is free or if it lands or compiters token.
+    checks if stace is free or if it lands or computers token.
     """
-    if board[old_row][old_col] == player and board[new_row][new_col] == "*":
+    opponent = 'X' if player == 'O' else 'O'
+
+    if abs(new_row - old_row) == 1 and abs(new_col - old_col) == 1 and board[new_row][new_col] =="*":
         return True
+    elif abs(new_row - old_row) == 2 and abs(new_col - old_col) == 2:
+        jumped_row = (old_row + new_row) // 2
+        jumped_col = (old_col + new_col) // 2
+        if board[new_row][new_col] == "*" and board[jumped_row][jumped_col] == opponent:
+            return True
     return False
+    
 
 def move_pieces(board, old_row, old_col, new_row, new_col, player):
     """
     this function will move the players pieces and computers pieces.
     and replace the old position with '*'
     """
+    if abs(new_row - old_row) == 2 and abs(new_col - old_col) ==2:
+        jumped_row = (old_row + new_row) // 2
+        jumped_col = (old_col + new_col) // 2
+        board[jumped_row][jumped_col] = '*'
+
     board[old_row][old_col] = '*'
 
     board[new_row][new_col] = player
@@ -86,6 +99,12 @@ def computer_move(board):
             if board[i][j] == 'X' and (i + j) % 2 == 1:
                 if i + 1 < 8 and j + 1 < 8 and board[i + 1][j + 1] == "*":
                     possible_moves.append((i, j, i + 1, j + 1))
+                if i + 1 < 8 and j - 1 >= 0 and board[i + 1][j - 1] == "*":
+                    possible_moves.append((i, j, i + 1, j - 1))
+                if i + 2 < 8 and j + 2 < 8 and board[i + 2][j + 2] == "*" and board[i + 1][j + 1] == 'O':
+                    possible_moves.append((i, j, i + 2, j + 2))
+                if i + 2 < 8 and j - 2 >= 0 and board[i + 2][j - 2] == "*" and board[i + 1][j - 1] == 'O':
+                    possible_moves.append((i, j, i + 2, j - 2))
 
     if possible_moves:
         old_row, old_col, new_row, new_col = random.choice(possible_moves)
