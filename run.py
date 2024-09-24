@@ -41,6 +41,22 @@ def display_board(board):
     for i, row in enumerate(board):
         print(i, " ".join(row))
 
+def players_move():
+    """
+    prompt the player to enter their move as row and column numbers.
+    returns the now and column input back to the player so they know what they chose to do.
+    """
+
+    while True:
+        try:
+            move = input("Enter your move (old_row old_col new_row new_col): ")
+            old_row, old_col, new_row, new_col = map(int, move.split())
+            if 0 <= old_row < 8 and 0 <= old_col < 8 and 0 <=new_row < 8 and 0 <=new_col <8:
+                return old_row, old_col, new_row, new_col
+            else:
+                print("Invalid move. please enter valid column and row numbers")
+        except ValueError:
+            print("Invalid input. Please Enter four numbers separated by spaces.")
 
 board = board_creation()
 rules_section()
