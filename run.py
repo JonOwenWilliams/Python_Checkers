@@ -58,6 +58,15 @@ def players_move():
         except ValueError:
             print("Invalid input. Please Enter four numbers separated by spaces.")
 
+def check_move(board, old_row, old_col, new_row, new_col, player):
+    """
+    Checks if the number the player entered is valid.
+    checks if stace is free or if it lands or compiters token.
+    """
+    if board[old_row][old_col] == player and board[new_row][new_col] == "*":
+        return True
+    return False
+
 board = board_creation()
 rules_section()
 display_board(board)
