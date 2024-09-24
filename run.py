@@ -67,6 +67,34 @@ def check_move(board, old_row, old_col, new_row, new_col, player):
         return True
     return False
 
+def move_pieces(board, old_row, old_col, new_row, new_col, player):
+    """
+    this function will move the players pieces and computers pieces.
+    and replace the old position with '*'
+    """
+    board[old_row][old_col] = '*'
+
+    board[new_row][new_col] = 'O'
+
+def computer_move(board):
+    """
+    This function will make the computer chose a random valid diagonal space.
+    """
+    if possible_moves: []
+    for i in range(8):
+        for j in range(8):
+            if board[i][j] == 'X' and (i + j) % 2 == 1:
+                if i + 1 < 8 and j + 1 < 8 and board[i + 1][j + 1] == "*":
+                    possible_moves.append((i, j, i + 1, j + 1))
+
+    if possible_moves:
+        old_row, old_col,, new_row, new_col = random.choice(possible_moves)
+        move_pieces(board, old_row, old_col, new_row, new_col, 'X')
+        print(f"Computer moves from {old_row} {old_col} to {new_row} {new_col}.")
+    else:
+        print("Computer have no valid moves!")
+
+
 board = board_creation()
 rules_section()
 display_board(board)
