@@ -74,13 +74,13 @@ def move_pieces(board, old_row, old_col, new_row, new_col, player):
     """
     board[old_row][old_col] = '*'
 
-    board[new_row][new_col] = 'O'
+    board[new_row][new_col] = player
 
 def computer_move(board):
     """
     This function will make the computer chose a random valid diagonal space.
     """
-    possible_moves: []
+    possible_moves = []
     for i in range(8):
         for j in range(8):
             if board[i][j] == 'X' and (i + j) % 2 == 1:
@@ -94,7 +94,11 @@ def computer_move(board):
     else:
         print("Computer have no valid moves!")
 
-def winner(board):
+def check_winner(board):
+    """
+    Checks if either the layer or computer.
+    has any tokens left to determin who wins.
+    """
     player_count = sum(row.count('O') for row in board)
     computer_count = sum(row.count('X') for row in board)
     if player_count == 0:
@@ -102,3 +106,50 @@ def winner(board):
     elif computer_count == 0:
         return "Player"
     return None
+
+def main():
+    """
+    loop the main gme to start and run "Python Checkers!"
+    and handles the gae alternating between the player and the computers turns
+    """
+    while True:
+        rules_section()
+        player_name = input("Enter your name: ")
+        print(f"Hello, {player_name}! Welcome to Python Checkers! You play as 'O'")
+
+        board = board_creation()
+        display_board(board)
+        
+        while True:
+            print(f"{player_name}'s turn!")
+            old_row, old_col, new_row, new_col = players_move()
+            if check_move(board, old_row, old_col, new_row, new_col, 'O'):
+                move_pieces(board, old_row, old_col, new_row, new_col, 'O')
+            else:
+                print("invalid move, try something else.")
+                continue
+
+            display_board(board)
+
+            winner = check_winner(board)
+            if winner:
+                print(f"{winner} wins!")
+                break
+
+            print("Now the computers turn!")
+            computer_move(board)
+            display_board(board)
+
+            winner = check_winner(board)
+            if winner:
+                print(f"{winner} wins!")
+                break
+
+        play_again = input ("do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("Thank you for playing! I hope you had fun.")
+            break
+
+main()
+
+
