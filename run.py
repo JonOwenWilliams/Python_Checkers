@@ -80,7 +80,7 @@ def computer_move(board):
     """
     This function will make the computer chose a random valid diagonal space.
     """
-    if possible_moves: []
+    possible_moves: []
     for i in range(8):
         for j in range(8):
             if board[i][j] == 'X' and (i + j) % 2 == 1:
@@ -88,13 +88,17 @@ def computer_move(board):
                     possible_moves.append((i, j, i + 1, j + 1))
 
     if possible_moves:
-        old_row, old_col,, new_row, new_col = random.choice(possible_moves)
+        old_row, old_col, new_row, new_col = random.choice(possible_moves)
         move_pieces(board, old_row, old_col, new_row, new_col, 'X')
         print(f"Computer moves from {old_row} {old_col} to {new_row} {new_col}.")
     else:
         print("Computer have no valid moves!")
 
-
-board = board_creation()
-rules_section()
-display_board(board)
+def winner(board):
+    player_count = sum(row.count('O') for row in board)
+    computer_count = sum(row.count('X') for row in board)
+    if player_count == 0:
+        return "Computer"
+    elif computer_count == 0:
+        return "Player"
+    return None
