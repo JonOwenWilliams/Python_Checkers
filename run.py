@@ -74,6 +74,11 @@ def check_move(board, old_row, old_col, new_row, new_col, player):
     """
     opponent = 'X' if player == 'O' else 'O'
 
+    if player == 'O' and new_row >= old_row:
+        return False
+    elif player == 'X' and new_row <= old_row:
+        return False
+
     if abs(new_row - old_row) == 1 and abs(new_col - old_col) == 1 and
     board[new_row][new_col] == "*":
         return True
