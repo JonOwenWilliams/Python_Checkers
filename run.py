@@ -64,7 +64,7 @@ def players_move():
             move = input("Enter your move (old_row old_col new_row new_col): ")
             old_row, old_col, new_row, new_col = map(int, move.split())
             # Ensures the player has entered valid numbers.
-            if 0 <= old_row < 8 and 0 <= old_col < 8 and
+            if 0 <= old_row < 8 and 0 <= old_col < 8 and\
             0 <= new_row < 8 and 0 <= new_col < 8:
                 return old_row, old_col, new_row, new_col
             else:
@@ -89,13 +89,13 @@ def check_move(board, old_row, old_col, new_row, new_col, player):
         if player == 'X' and new_row <= old_row:
             return False
     # Checks for basic diagonal moves as well as jumping over pieces.
-    if abs(new_row - old_row) == 1 and abs(new_col - old_col) == 1 and
+    if abs(new_row - old_row) == 1 and abs(new_col - old_col) == 1 and\
     board[new_row][new_col] == "*":
         return True
     elif abs(new_row - old_row) == 2 and abs(new_col - old_col) == 2:
         jumped_row = (old_row + new_row) // 2
         jumped_col = (old_col + new_col) // 2
-        if board[new_row][new_col] == "*" and
+        if board[new_row][new_col] == "*" and\
         board[jumped_row][jumped_col] in (opponent, opponent_king):
             return True
     return False
@@ -139,24 +139,24 @@ def computer_move(board):
                     possible_moves.append((i, j, i + 1, j + 1))
                 if i + 1 < 8 and j - 1 >= 0 and board[i + 1][j - 1] == "*":
                     possible_moves.append((i, j, i + 1, j - 1))
-                if i + 2 < 8 and j + 2 < 8 and board[i + 2][j + 2] == "*" and
+                if i + 2 < 8 and j + 2 < 8 and board[i + 2][j + 2] == "*" and\
                 board[i + 1][j + 1] == 'O':
                     possible_moves.append((i, j, i + 2, j + 2))
-                if i + 2 < 8 and j - 2 >= 0 and board[i + 2][j - 2] == "*" and
+                if i + 2 < 8 and j - 2 >= 0 and board[i + 2][j - 2] == "*" and\
                 board[i + 1][j - 1] == 'O':
                     possible_moves.append((i, j, i + 2, j - 2))
                 # this allows the computer to move backwards after upgrading
                 if board[i][j] == '#':
-                    if i - 1 >= 0 and j + 1 < 8 and
+                    if i - 1 >= 0 and j + 1 < 8 and\
                     board[i - 1][j + 1] == "*":
                         possible_moves.append((i, j, i - 1, j + 1))
-                    if i - 1 >= 0 and j - 1 >= 0 and
+                    if i - 1 >= 0 and j - 1 >= 0 and\
                     board[i - 1][j - 1] == "*":
                         possible_moves.append((i, j, i - 1, j - 1))
-                    if i - 2 >= 0 and j + 2 < 8 and
+                    if i - 2 >= 0 and j + 2 < 8 and\
                     board[i - 2][j + 2] == "*" and board[i - 1][j + 1] == "O":
                         possible_moves.append((i, j, i - 2, j + 2))
-                    if i - 2 >= 0 and j - 2 >= 0 and
+                    if i - 2 >= 0 and j - 2 >= 0 and\
                     board[i - 2][j + 2] == "*" and board[i - 1][j - 1] == "O":
                         possible_moves.append((i, j, i - 2, j - 2))
     # Randomly picks any valid move possible.
@@ -175,7 +175,7 @@ def possible_moves_left(board, player):
     """
     for i in range(8):
         for j in range(8):
-            if board[i][j] == player or (player == 'O' and board[i][j] == '@')
+            if board[i][j] == player or (player == 'O' and board[i][j] == '@')\
             or (player == 'X' and board[i][j] == '#'):
                 if i > 0 and j > 0 and board[i-1][j-1] == "*":
                     return True
@@ -192,7 +192,7 @@ def check_draw(board):
     """
     Checks to see if both the player and computer have no more moves left
     """
-    if not possible_moves_left(board, 'O') and
+    if not possible_moves_left(board, 'O') and\
     not possible_moves_left(board, 'X'):
         return True
     return False

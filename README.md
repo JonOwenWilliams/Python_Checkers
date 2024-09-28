@@ -13,3 +13,7 @@ Welcome to Python Checkers!, this is a classic strategy game brought to life in 
 - **King Promotion:** When one of your pieces reaches the opposite end of the board, it will be promoted to a king, represented by '@'. A king gains the ability to move backward across the board. Similarly, the computer's king pieces will be represented by '#'.
 - **Movement:** To move a piece, you'll need to enter the row and column of the piece you wish to move, followed by the row and column of the destination (e.g., 5 6 4 7).
 - **Objective:** Your goal is to capture all of the computer's pieces and secure victory.
+
+### Features!
+
+-
