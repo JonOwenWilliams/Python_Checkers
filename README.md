@@ -16,4 +16,6 @@ Welcome to Python Checkers!, this is a classic strategy game brought to life in 
 
 ### Features!
 
--
+- The board that the game is displayed on has numbers labeling the rows and the columns to make it easier for players to chose what piece they want to use.
+
+![Screenshot of the checkers board displayed in python](images/board.png)
