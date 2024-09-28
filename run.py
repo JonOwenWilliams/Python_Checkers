@@ -169,11 +169,46 @@ def computer_move(board):
         print("Computer has no valid moves!")
 
 
+def possible_moves_left(board, player):
+    """
+    Checks the board for any possible moves left by either computer or player.
+    """
+    for i in range(8):
+        for j in range(8):
+            if board[i][j] == player or (player == 'O' and board[i][j] == '@')
+            or (player == 'X' and board[i][j] == '#'):
+                if i > 0 and j > 0 and board[i-1][j-1] == "*":
+                    return True
+                if i > 0 and j < 7 and board[i-1][j+1] == "*":
+                    return True
+                if i < 7 and j > 0 and board[i+1][j-1] == "*":
+                    return True
+                if i < 7 and j < 7 and board[i+1][j+1] == "*":
+                    return True
+    return False
+
+
+def check_draw(board):
+    """
+    Checks to see if both the player and computer have no more moves left
+    """
+    if not possible_moves_left(board, 'O') and
+    not possible_moves_left(board, 'X'):
+        return True
+    return False
+
+
 def check_winner(board):
     """
     Checks if either the player or computer,
     has any tokens left to determine who wins.
     """
+    # if either one wins from no more moves left
+    if not possible_moves_left(board, 'O'):
+        return "Computer"
+    if not possible_moves_left(board, 'X'):
+        return "Player"
+
     # Checks for winners
     player_count = sum(row.count('O') + row.count('@') for row in board)
     computer_count = sum(row.count('X') + row.count('#') for row in board)
@@ -214,6 +249,9 @@ def main():
             if winner:
                 print(f"{winner} wins!")
                 break
+            if check_draw(board):
+                print("Its a draw! No more valid moves.")
+                break
             # Computer's turn
             print("Now the computer's turn!")
             computer_move(board)
@@ -222,6 +260,9 @@ def main():
             winner = check_winner(board)
             if winner:
                 print(f"{winner} wins!")
+                break
+            if check_draw(board):
+                print("Its a draw! No more valid moves.")
                 break
         # Asks the player if they want to play again.
         play_again = input("do you want to play again? (yes/no): ").lower()
