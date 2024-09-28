@@ -1,32 +1,15 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Python Checkers!
 
-Welcome,
+Welcome to Python Checkers!, this is a classic strategy game brought to life in the Python terminal. This turn-based game puts you up against an AI opponent. With an 8x8 board, diagonal movement, and the ability to jump over your opponents' pieces. Python Checkers captures the essence of the original board game all while showcasing the power of Python.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+[Here is my live project](https://python-checkers-9d82286035ad.herokuapp.com/)
 
-## Reminders
+![Screenshot of the "am i responsive" page](images/am-i-responsive.png)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+### How to play Python Checkers.
 
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+- **Game Rules:** you can find the main rules of checkers [here!](https://en.wikipedia.org/wiki/Checkers)
+- **Player vs. Computer:** As the player, you will control the 'O' pieces, while the computer will play as 'X'.
+- **King Promotion:** When one of your pieces reaches the opposite end of the board, it will be promoted to a king, represented by '@'. A king gains the ability to move backward across the board. Similarly, the computer's king pieces will be represented by '#'.
+- **Movement:** To move a piece, you'll need to enter the row and column of the piece you wish to move, followed by the row and column of the destination (e.g., 5 6 4 7).
+- **Objective:** Your goal is to capture all of the computer's pieces and secure victory.
